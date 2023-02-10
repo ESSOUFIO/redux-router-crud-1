@@ -26,6 +26,14 @@ const routes = createBrowserRouter([
       {
         path: "post/:id/edit",
         element: <EditPost />,
+        loader: ({ params }) => {
+          if (isNaN(params.id)) {
+            throw new Response("Bad Request", {
+              statusText: "Text of error....",
+              status: 400,
+            });
+          }
+        },
       },
     ],
   },
